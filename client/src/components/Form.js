@@ -1,9 +1,9 @@
 import React from 'react'
 
 
-const CustomForm = ({values, handleChange}) => {
+const CustomForm = ({ values, handleChange }) => {
 
-    const {title, description} = values;
+    const { title, description } = values;
 
     return (
         <form>
@@ -22,7 +22,7 @@ const CustomForm = ({values, handleChange}) => {
             <div>
                 Title : {title} <br />
                 Description : {description} <br />
-                value : {values && JSON.stringify(values) }
+                value : {values && JSON.stringify(values)}
             </div>
         </form>
     )

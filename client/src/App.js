@@ -1,25 +1,24 @@
 import React from "react";
-import CustomForm from "./components/Form";
+import { Routes, Route } from "react-router-dom";
+import CreateTodo from "./pages/CreateTodo";
+import TodoList from "./pages/TodoList";
 import NavBar from "./components/NavBar";
-
-let initialState = {
-  title: '',
-  description: ''
-}
+import ErrorPage from "./pages/404";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
 
 function App() {
-  const [data, setData] = React.useState(initialState);
 
-  const handleChange = (e) => {
-    setData({
-      ...data,
-      [e.target.name]: e.target.value
-    })
-  }
   return (
     <div className="container">
+      <ToastContainer />
       <NavBar />
-      <CustomForm handleChange={handleChange} values={data} />
+      <Routes>
+        <Route path="/" element={<TodoList />} />
+        <Route path="/create" element={<CreateTodo />} />
+
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
     </div>
   );
 }
