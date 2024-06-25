@@ -1,5 +1,7 @@
 import React from 'react'
 import CustomForm from '../components/Form'
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 let initialState = {
     title: '',
@@ -15,8 +17,20 @@ const CreateTodo = () => {
             [e.target.name]: e.target.value
         })
     }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        axios.post('http://localhost:8000/api/add', data)
+            .then((res) => {
+                toast.success("Todo added successfully");
+            }).catch((err) => {
+                toast.error("Error adding todo");
+            })
+    }
+
+
     return (
-        <CustomForm handleChange={handleChange} values={data} />
+        <CustomForm handleSubmit={handleSubmit} handleChange={handleChange} values={data} />
     );
 }
 
